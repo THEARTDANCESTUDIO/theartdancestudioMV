@@ -1,5 +1,5 @@
 
-import { Video, NavLink } from './types';
+import { Video, NavLink } from './types.ts';
 
 export const NAV_LINKS: NavLink[] = [
   { label: 'DANCERS', href: '#' },

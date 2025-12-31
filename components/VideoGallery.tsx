@@ -1,17 +1,16 @@
 
 import React, { useState } from 'react';
 import { X, Play } from 'lucide-react';
-import { KPOP_VIDEOS } from '../constants';
-import { Video } from '../types';
+import { KPOP_VIDEOS } from '../constants.ts';
+import { Video } from '../types.ts';
 
 const VideoGallery: React.FC = () => {
   const [activeVideo, setActiveVideo] = useState<Video | null>(null);
 
   return (
     <section id="videos" className="bg-black min-h-screen py-20 px-6 md:px-12 lg:px-32">
-      {/* Header Section */}
       <div className="mb-16">
-        <h1 className="text-5xl md:text-7xl font-[900] tracking-tighter uppercase mb-4">
+        <h1 className="text-5xl md:text-7xl font-[900] tracking-tighter uppercase mb-4 text-white">
           K-POP MUSIC VIDEO
         </h1>
         <div className="w-20 h-2 bg-red-600 mb-10"></div>
@@ -21,7 +20,6 @@ const VideoGallery: React.FC = () => {
         </p>
       </div>
 
-      {/* Single Column Layout for Large Previews */}
       <div className="grid grid-cols-1 gap-12 md:gap-20">
         {KPOP_VIDEOS.map((video) => (
           <div 
@@ -29,17 +27,14 @@ const VideoGallery: React.FC = () => {
             className="group relative w-full aspect-[21/9] md:aspect-[21/7] bg-neutral-900 overflow-hidden cursor-pointer rounded-sm"
             onClick={() => setActiveVideo(video)}
           >
-            {/* High Quality Thumbnail */}
             <img 
               src={video.thumbnail} 
               alt={video.title} 
               className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-1000 ease-out"
             />
             
-            {/* Cinematic Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent group-hover:from-red-950/40 transition-colors duration-500"></div>
             
-            {/* Large Text Content */}
             <div className="absolute bottom-8 left-8 right-8 md:bottom-12 md:left-12">
               <div className="flex items-center gap-3 mb-3">
                 <span className="text-xs md:text-sm font-black tracking-[0.3em] text-red-600 uppercase">
@@ -57,21 +52,18 @@ const VideoGallery: React.FC = () => {
                   {video.artist}
                 </p>
                 
-                {/* Visual Play Indicator */}
-                <div className="flex items-center gap-2 px-4 py-1.5 border border-white/20 rounded-full text-[10px] font-black tracking-widest opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
+                <div className="flex items-center gap-2 px-4 py-1.5 border border-white/20 rounded-full text-[10px] font-black tracking-widest text-white opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
                   <Play size={12} fill="white" /> PLAY VIDEO
                 </div>
               </div>
             </div>
 
-            {/* Subtle Texture Overlay */}
             <div className="absolute inset-0 pointer-events-none opacity-[0.03] mix-blend-overlay" 
                  style={{ backgroundImage: 'url("https://www.transparenttextures.com/patterns/asfalt-dark.png")' }}></div>
           </div>
         ))}
       </div>
 
-      {/* Immersive Video Modal */}
       {activeVideo && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center">
           <div 
@@ -80,11 +72,10 @@ const VideoGallery: React.FC = () => {
           ></div>
           
           <div className="relative z-10 w-full h-full flex flex-col animate-in fade-in duration-500">
-            {/* Modal Controls */}
-            <div className="flex justify-between items-center p-6 md:px-12">
+            <div className="flex justify-between items-center p-6 md:px-12 bg-black/90">
                <div className="flex flex-col">
                   <span className="text-[10px] font-black tracking-[0.4em] text-red-600 uppercase mb-1">{activeVideo.category}</span>
-                  <h2 className="text-xl md:text-2xl font-black tracking-tight">{activeVideo.title} — {activeVideo.artist}</h2>
+                  <h2 className="text-xl md:text-2xl font-black tracking-tight text-white">{activeVideo.title} — {activeVideo.artist}</h2>
                </div>
                <button 
                 className="text-white/50 hover:text-white transition-all hover:rotate-90 duration-300"
@@ -94,7 +85,6 @@ const VideoGallery: React.FC = () => {
               </button>
             </div>
             
-            {/* Giant YouTube Integration */}
             <div className="flex-grow w-full bg-black relative">
               <iframe
                 className="w-full h-full"

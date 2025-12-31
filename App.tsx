@@ -1,6 +1,6 @@
 
 import React from 'react';
-import VideoGallery from './components/VideoGallery';
+import VideoGallery from './components/VideoGallery.tsx';
 
 const App: React.FC = () => {
   return (
