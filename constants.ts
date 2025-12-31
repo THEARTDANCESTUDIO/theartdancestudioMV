@@ -13,11 +13,11 @@ export const NAV_LINKS: NavLink[] = [
 export const KPOP_VIDEOS: Video[] = [
   {
     id: '1',
-    title: 'How You Like That',
-    artist: 'BLACKPINK',
-    youtubeId: 'ioNng23DkIM',
-    thumbnail: 'https://img.youtube.com/vi/ioNng23DkIM/maxresdefault.jpg',
-    category: 'CHOREOGRAPHY'
+    title: 'MAGNETIC',
+    artist: 'ILLIT',
+    youtubeId: 'HHl2E6o60zo',
+    thumbnail: 'https://img.youtube.com/vi/HHl2E6o60zo/maxresdefault.jpg',
+    category: 'THEART M/V'
   },
   {
     id: '2',
@@ -45,11 +45,11 @@ export const KPOP_VIDEOS: Video[] = [
   },
   {
     id: '5',
-    title: 'Magnetic',
-    artist: 'ILLIT',
-    youtubeId: 'Vk5-c_v4gMU',
-    thumbnail: 'https://img.youtube.com/vi/Vk5-c_v4gMU/maxresdefault.jpg',
-    category: 'DEBUT'
+    title: 'Bubble Gum',
+    artist: 'NewJeans',
+    youtubeId: 'fpc_HovK_7k',
+    thumbnail: 'https://img.youtube.com/vi/fpc_HovK_7k/maxresdefault.jpg',
+    category: 'LATEST'
   },
   {
     id: '6',
