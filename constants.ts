@@ -13,8 +13,8 @@ export const NAV_LINKS: NavLink[] = [
 export const KPOP_VIDEOS: Video[] = [
   {
     id: '1',
-    title: 'MAGNETIC',
-    artist: 'ILLIT',
+    title: 'WICKED',
+    artist: 'ALLDAY PROJECT',
     youtubeId: 'HHl2E6o60zo',
     thumbnail: 'https://img.youtube.com/vi/HHl2E6o60zo/maxresdefault.jpg',
     category: 'THEART M/V'
@@ -25,7 +25,7 @@ export const KPOP_VIDEOS: Video[] = [
     artist: 'NewJeans',
     youtubeId: 'ArmDp-zijuc',
     thumbnail: 'https://img.youtube.com/vi/ArmDp-zijuc/maxresdefault.jpg',
-    category: 'TRENDING'
+    category: 'THEART M/V'
   },
   {
     id: '3',
@@ -33,7 +33,7 @@ export const KPOP_VIDEOS: Video[] = [
     artist: 'aespa',
     youtubeId: 'D8VEcvp7nVY',
     thumbnail: 'https://img.youtube.com/vi/D8VEcvp7nVY/maxresdefault.jpg',
-    category: 'POWER'
+    category: 'THEART M/V'
   },
   {
     id: '4',
@@ -41,7 +41,7 @@ export const KPOP_VIDEOS: Video[] = [
     artist: 'LE SSERAFIM',
     youtubeId: 'hLvWy2b857I',
     thumbnail: 'https://img.youtube.com/vi/hLvWy2b857I/maxresdefault.jpg',
-    category: 'POP'
+    category: 'THEART M/V'
   },
   {
     id: '5',
@@ -49,7 +49,7 @@ export const KPOP_VIDEOS: Video[] = [
     artist: 'NewJeans',
     youtubeId: 'fpc_HovK_7k',
     thumbnail: 'https://img.youtube.com/vi/fpc_HovK_7k/maxresdefault.jpg',
-    category: 'LATEST'
+    category: 'THEART M/V'
   },
   {
     id: '6',
@@ -57,6 +57,6 @@ export const KPOP_VIDEOS: Video[] = [
     artist: 'IVE',
     youtubeId: 'Da4P2uT4mVc',
     thumbnail: 'https://img.youtube.com/vi/Da4P2uT4mVc/maxresdefault.jpg',
-    category: 'STYLE'
+    category: 'THEART M/V'
   }
 ];
