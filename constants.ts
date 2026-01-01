@@ -12,51 +12,51 @@ export const NAV_LINKS: NavLink[] = [
 
 export const KPOP_VIDEOS: Video[] = [
   {
-    id: '1',
+    id: '4',
     title: 'WICKED',
     artist: 'ALLDAY PROJECT',
     youtubeId: 'HHl2E6o60zo',
-    thumbnail: 'https://mybox.naver.com/main/web/my/viewer/3472598423969534300:30114734?resourceKey=dGhlYXJ0MTEyMHwzNDcyMzY2NDA0MDAzNTc5NjY0fER8MA&fileResourceKey=dGhlYXJ0MTEyMHwzNDcyNTk4NDIzOTY5NTM0MzAwfEZ8MA&downloadable=true&editable=false$0',
+    thumbnail: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=',
+    category: 'THEART M/V'
+  },
+  {
+    id: '1',
+    title: 'Whiplash',
+    artist: 'aespa',
+    youtubeId: 'fEBETzsJenI',
+    thumbnail: 'https://img.youtube.com/vi/fEBETzsJenI/maxresdefault.jpg',
     category: 'THEART M/V'
   },
   {
     id: '2',
-    title: 'Super Shy',
-    artist: 'NewJeans',
-    youtubeId: 'ArmDp-zijuc',
-    thumbnail: 'https://img.youtube.com/vi/ArmDp-zijuc/maxresdefault.jpg',
+    title: 'I DO ME',
+    artist: 'KiiiKiii',
+    youtubeId: 'ttn39TB4zaM',
+    thumbnail: 'https://img.youtube.com/vi/ttn39TB4zaM/maxresdefault.jpg',
     category: 'THEART M/V'
   },
   {
     id: '3',
-    title: 'Drama',
-    artist: 'aespa',
-    youtubeId: 'D8VEcvp7nVY',
-    thumbnail: 'https://img.youtube.com/vi/D8VEcvp7nVY/maxresdefault.jpg',
-    category: 'THEART M/V'
-  },
-  {
-    id: '4',
-    title: 'Perfect Night',
-    artist: 'LE SSERAFIM',
-    youtubeId: 'hLvWy2b857I',
-    thumbnail: 'https://img.youtube.com/vi/hLvWy2b857I/maxresdefault.jpg',
+    title: 'Magnetic',
+    artist: 'ILLIT',
+    youtubeId: 'NwK2IzHWi6k',
+    thumbnail: 'https://img.youtube.com/vi/NwK2IzHWi6k/maxresdefault.jpg',
     category: 'THEART M/V'
   },
   {
     id: '5',
-    title: 'Bubble Gum',
-    artist: 'NewJeans',
-    youtubeId: 'fpc_HovK_7k',
-    thumbnail: 'https://img.youtube.com/vi/fpc_HovK_7k/maxresdefault.jpg',
+    title: 'Cherish',
+    artist: 'ILLIT',
+    youtubeId: '1D1kbBwE1_E',
+    thumbnail: 'https://img.youtube.com/vi/1D1kbBwE1_E/maxresdefault.jpg',
     category: 'THEART M/V'
   },
   {
     id: '6',
-    title: 'Baddie',
-    artist: 'IVE',
-    youtubeId: 'Da4P2uT4mVc',
-    thumbnail: 'https://img.youtube.com/vi/Da4P2uT4mVc/maxresdefault.jpg',
+    title: 'ANTIFRAGILE',
+    artist: 'LE SSERAFIM',
+    youtubeId: 'Sy5EznfmXS8',
+    thumbnail: 'https://img.youtube.com/vi/Sy5EznfmXS8/maxresdefault.jpg',
     category: 'THEART M/V'
   }
 ];
