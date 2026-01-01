@@ -16,7 +16,7 @@ export const KPOP_VIDEOS: Video[] = [
     title: 'WICKED',
     artist: 'ALLDAY PROJECT',
     youtubeId: 'HHl2E6o60zo',
-    thumbnail: 'https://img.youtube.com/vi/HHl2E6o60zo/maxresdefault.jpg',
+    thumbnail: 'https://mybox.naver.com/main/web/my/viewer/3472598423969534300:30114734?resourceKey=dGhlYXJ0MTEyMHwzNDcyMzY2NDA0MDAzNTc5NjY0fER8MA&fileResourceKey=dGhlYXJ0MTEyMHwzNDcyNTk4NDIzOTY5NTM0MzAwfEZ8MA&downloadable=true&editable=false$0',
     category: 'THEART M/V'
   },
   {
