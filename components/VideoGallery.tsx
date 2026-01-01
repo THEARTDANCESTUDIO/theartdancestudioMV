@@ -26,16 +26,16 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ videos, lang }) => {
         {videos.map((video) => (
           <div 
             key={video.id} 
-            className="group relative w-full aspect-[21/9] bg-neutral-900 overflow-hidden cursor-pointer rounded-sm"
+            className="group relative w-full aspect-[21/9] bg-black overflow-hidden cursor-pointer rounded-sm border border-white/5 hover:border-white/10 transition-colors duration-500"
             onClick={() => setActiveVideo(video)}
           >
             <img 
               src={video.thumbnail} 
               alt={video.title} 
-              className="w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-[1.02] transition-all duration-1000 ease-out"
+              className="w-full h-full object-cover opacity-50 group-hover:opacity-80 group-hover:scale-[1.02] transition-all duration-1000 ease-out"
             />
             
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/20"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90"></div>
             
             <div className="absolute inset-0 p-8 md:p-14 flex flex-col justify-end items-start">
               <div className="flex items-center gap-4 mb-4">
@@ -50,17 +50,18 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ videos, lang }) => {
               </h3>
               
               <div className="flex items-center gap-6">
-                <p className="text-xl md:text-3xl font-black text-white/50 italic uppercase tracking-tighter">
+                <p className="text-xl md:text-3xl font-black text-white/40 italic uppercase tracking-tighter group-hover:text-white/70 transition-colors">
                   {video.artist}
                 </p>
                 
-                <div className="flex items-center gap-2 px-6 py-2.5 border border-white/30 rounded-full text-[11px] font-black tracking-widest text-white hover:bg-white hover:text-black transition-all duration-300">
+                <div className="flex items-center gap-2 px-6 py-2.5 border border-white/20 rounded-full text-[11px] font-black tracking-widest text-white/60 group-hover:text-white group-hover:border-white/50 hover:bg-white hover:text-black transition-all duration-300">
                   <Play size={12} fill="currentColor" /> {t.play}
                 </div>
               </div>
             </div>
 
-            <div className="absolute inset-0 pointer-events-none opacity-[0.04] mix-blend-soft-light bg-neutral-400"></div>
+            {/* Grain/Texture Overlay for deeper black feel */}
+            <div className="absolute inset-0 pointer-events-none opacity-[0.03] mix-blend-overlay bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
           </div>
         ))}
       </div>
@@ -68,7 +69,7 @@ const VideoGallery: React.FC<VideoGalleryProps> = ({ videos, lang }) => {
       {activeVideo && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center">
           <div 
-            className="absolute inset-0 bg-black/95 backdrop-blur-3xl" 
+            className="absolute inset-0 bg-black/98 backdrop-blur-3xl" 
             onClick={() => setActiveVideo(null)}
           ></div>
           

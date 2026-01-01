@@ -88,7 +88,7 @@ export const TRANSLATIONS = {
       faqDesc: 'プログラムに関する迅速な回答については、よくある質問を確認してください.',
       contact: 'お問い合わせ',
       getInTouch: '連絡を取る',
-      contactDesc: '私たちのチームは、あなたがTHEARTでの旅을始めるのを手伝うためにここにいます.',
+      contactDesc: '私たちの팀은, 당신이 THEART에서의 여정을 시작하는 것을 돕기 위해 여기에 있습니다.',
       office: 'ダンススタジオ本社',
       terms: '利用規約',
       privacy: 'プライバシーポリシー'
@@ -154,7 +154,8 @@ export const KPOP_VIDEOS: Video[] = [
     title: "WICKED",
     artist: "ALLDAY PROJECT",
     youtubeId: "HHl2E6o60zo",
-    thumbnail: "https://img.youtube.com/vi/HHl2E6o60zo/maxresdefault.jpg",
+    // 썸네일을 검은색 이미지로 변경
+    thumbnail: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2070&auto=format&fit=crop",
     category: "THEART M/V"
   },
   {
