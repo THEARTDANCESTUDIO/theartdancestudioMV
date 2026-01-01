@@ -24,7 +24,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ videos, onAdd, onDelete, onMove
     e.preventDefault();
     if (newVideo.title && newVideo.artist && newVideo.youtubeId) {
       const videoToAdd: Video = {
-        id: Date.now().toString(),
+        id: `v-${Date.now()}`, // More explicit unique ID
         title: newVideo.title,
         artist: newVideo.artist,
         youtubeId: newVideo.youtubeId,
@@ -130,7 +130,9 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ videos, onAdd, onDelete, onMove
                     </div>
                     <button 
                       onClick={() => {
-                        if(confirm('이 영상을 삭제할까요?')) onDelete(video.id);
+                        if (window.confirm('이 영상을 목록에서 삭제하시겠습니까?')) {
+                          onDelete(video.id);
+                        }
                       }}
                       className="p-3 hover:bg-red-600/20 rounded-full text-white/20 hover:text-red-500 transition-all"
                     >

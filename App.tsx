@@ -10,8 +10,17 @@ import { Video, Language } from './types.ts';
 const App: React.FC = () => {
   // Load initial videos from localStorage or fallback to constants
   const [videos, setVideos] = useState<Video[]>(() => {
-    const saved = localStorage.getItem('theart_videos');
-    return saved ? JSON.parse(saved) : KPOP_VIDEOS;
+    try {
+      const saved = localStorage.getItem('theart_videos');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        return Array.isArray(parsed) ? parsed : KPOP_VIDEOS;
+      }
+      return KPOP_VIDEOS;
+    } catch (e) {
+      console.error('Failed to load videos from storage', e);
+      return KPOP_VIDEOS;
+    }
   });
   
   const [isAdmin, setIsAdmin] = useState(false);
@@ -23,29 +32,35 @@ const App: React.FC = () => {
   }, [videos]);
 
   const handleAddVideo = (newVideo: Video) => {
-    setVideos([newVideo, ...videos]);
+    setVideos(prev => [newVideo, ...prev]);
   };
 
   const handleDeleteVideo = (id: string) => {
-    setVideos(videos.filter(v => v.id !== id));
+    setVideos(prev => {
+      const filtered = prev.filter(v => String(v.id) !== String(id));
+      return [...filtered]; // Return a fresh array copy
+    });
   };
 
   const handleMoveVideo = (id: string, direction: 'up' | 'down') => {
-    const index = videos.findIndex(v => v.id === id);
-    if (index === -1) return;
-    
-    const newVideos = [...videos];
-    const targetIndex = direction === 'up' ? index - 1 : index + 1;
-    
-    if (targetIndex >= 0 && targetIndex < newVideos.length) {
-      [newVideos[index], newVideos[targetIndex]] = [newVideos[targetIndex], newVideos[index]];
-      setVideos(newVideos);
-    }
+    setVideos(prev => {
+      const index = prev.findIndex(v => String(v.id) === String(id));
+      if (index === -1) return prev;
+      
+      const newVideos = [...prev];
+      const targetIndex = direction === 'up' ? index - 1 : index + 1;
+      
+      if (targetIndex >= 0 && targetIndex < newVideos.length) {
+        [newVideos[index], newVideos[targetIndex]] = [newVideos[targetIndex], newVideos[index]];
+        return newVideos;
+      }
+      return prev;
+    });
   };
 
   const handleResetVideos = () => {
     if (window.confirm('모든 데이터를 초기 상태로 복구하시겠습니까?')) {
-      setVideos(KPOP_VIDEOS);
+      setVideos([...KPOP_VIDEOS]);
     }
   };
 
