@@ -1,4 +1,3 @@
-
 import { Video } from './types.ts';
 
 export const TRANSLATIONS = {
@@ -86,10 +85,10 @@ export const TRANSLATIONS = {
     footer: {
       faq: 'よくある質問',
       anyQuestions: 'ご質問がありますか？',
-      faqDesc: 'プログラムに関する迅速な回答については、よくある質問を確認してください。',
+      faqDesc: 'プログラムに関する迅速な回答については、よくある質問を確認してください.',
       contact: 'お問い合わせ',
       getInTouch: '連絡を取る',
-      contactDesc: '私たちのチームは、あなたがTHEARTでの旅を始めるのを手伝うためにここにいます。',
+      contactDesc: '私たちのチームは、あなたがTHEARTでの旅을始めるのを手伝うためにここにいます.',
       office: 'ダンススタジオ本社',
       terms: '利用規約',
       privacy: 'プライバシーポリシー'
@@ -120,10 +119,10 @@ export const TRANSLATIONS = {
     footer: {
       faq: '常见问题',
       anyQuestions: '有什么问题吗？',
-      faqDesc: '查看我们的常见问题，快速了解我们的项目。',
+      faqDesc: '查看我们的常见问题，快速了解我们的项目.',
       contact: '联系我们',
       getInTouch: '取得联系',
-      contactDesc: '我们的团队在这里帮助您开启THEART之旅。',
+      contactDesc: '我们的团队在这里帮助您开启THEART之旅.',
       office: '舞蹈工作室总部',
       terms: '条款',
       privacy: '隐私'
@@ -156,6 +155,14 @@ export const KPOP_VIDEOS: Video[] = [
     artist: "ALLDAY PROJECT",
     youtubeId: "HHl2E6o60zo",
     thumbnail: "https://img.youtube.com/vi/HHl2E6o60zo/maxresdefault.jpg",
+    category: "THEART M/V"
+  },
+  {
+    id: "v-i do me",
+    title: "I DO ME",
+    artist: "KiiiKiii(키키) vocal ver.",
+    youtubeId: "8kIEnr_no9I",
+    thumbnail: "https://img.youtube.com/vi/8kIEnr_no9I/maxresdefault.jpg",
     category: "THEART M/V"
   },
   {
