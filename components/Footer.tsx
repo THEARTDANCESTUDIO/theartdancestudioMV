@@ -10,11 +10,16 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ onTriggerAdmin, lang }) => {
+  const t = TRANSLATIONS[lang].footer;
+  
+  // Secret trigger state
   const clickCount = useRef(0);
   const lastClickTime = useRef(0);
-  const t = TRANSLATIONS[lang].footer;
 
-  const handleSecretClick = () => {
+  const handlePrivacyClick = (e: React.MouseEvent) => {
+    // Prevent default anchor behavior if we want it to stay secret
+    e.preventDefault();
+    
     const now = Date.now();
     if (now - lastClickTime.current < 1000) {
       clickCount.current += 1;
@@ -25,7 +30,7 @@ const Footer: React.FC<FooterProps> = ({ onTriggerAdmin, lang }) => {
 
     if (clickCount.current >= 5) {
       onTriggerAdmin();
-      clickCount.current = 0;
+      clickCount.current = 0; // Reset after trigger
     }
   };
 
@@ -81,19 +86,18 @@ const Footer: React.FC<FooterProps> = ({ onTriggerAdmin, lang }) => {
 
           <div className="flex flex-col md:flex-row items-center justify-between w-full border-t border-white/5 pt-8 gap-4">
             <p className="text-[10px] text-white/20">© 2024 THEART DANCE STUDIO. ALL RIGHTS RESERVED.</p>
-            <div className="flex gap-4">
+            <div className="flex gap-6 items-center">
               <a href="#" className="text-[10px] text-white/20 hover:text-white/40 uppercase">{t.terms}</a>
-              <a href="#" className="text-[10px] text-white/20 hover:text-white/40 uppercase">{t.privacy}</a>
+              <button 
+                onClick={handlePrivacyClick}
+                className="text-[10px] text-white/20 hover:text-white/40 uppercase cursor-default"
+              >
+                {t.privacy}
+              </button>
             </div>
           </div>
         </div>
       </div>
-
-      <div 
-        className="absolute bottom-0 right-0 w-12 h-12 cursor-default z-[101]"
-        onClick={handleSecretClick}
-        title="Admin Trigger"
-      />
     </footer>
   );
 };
