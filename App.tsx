@@ -8,12 +8,13 @@ import { KPOP_VIDEOS } from './constants.ts';
 import { Video, Language } from './types.ts';
 
 const App: React.FC = () => {
+  // Load initial videos: Prioritize LocalStorage during development, fallback to constants.ts
   const [videos, setVideos] = useState<Video[]>(() => {
     try {
       const saved = localStorage.getItem('theart_videos');
       if (saved) {
         const parsed = JSON.parse(saved);
-        return Array.isArray(parsed) && parsed.length > 0 ? parsed : KPOP_VIDEOS;
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
       }
       return KPOP_VIDEOS;
     } catch (e) {
@@ -25,7 +26,7 @@ const App: React.FC = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [lang, setLang] = useState<Language>('KO');
 
-  // Strict persistence
+  // Persistence to local browser storage
   useEffect(() => {
     localStorage.setItem('theart_videos', JSON.stringify(videos));
   }, [videos]);
@@ -36,10 +37,9 @@ const App: React.FC = () => {
 
   const handleDeleteVideo = useCallback((id: string) => {
     setVideos(prev => {
-      // Create a completely new reference and filter strictly
+      // Robust filtering using string comparison to avoid type mismatch
       const updated = prev.filter(v => String(v.id).trim() !== String(id).trim());
-      // Log for debugging in browser console
-      console.log(`Deleting video with ID: ${id}. Remaining count: ${updated.length}`);
+      console.log(`[Admin] Deleting ID: ${id}. Remaining: ${updated.length}`);
       return [...updated];
     });
   }, []);
@@ -61,7 +61,7 @@ const App: React.FC = () => {
   }, []);
 
   const handleResetVideos = useCallback(() => {
-    if (window.confirm('모든 데이터를 초기 상태로 복구하시겠습니까? (로컬 저장소 초기화)')) {
+    if (window.confirm('모든 데이터를 constants.ts의 기본값으로 초기화하시겠습니까?')) {
       setVideos([...KPOP_VIDEOS]);
       localStorage.removeItem('theart_videos');
     }

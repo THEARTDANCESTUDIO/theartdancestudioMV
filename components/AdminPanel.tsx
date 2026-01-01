@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { X, Plus, Trash2, ArrowUp, ArrowDown, RefreshCw, Copy, Check } from 'lucide-react';
+import { X, Plus, Trash2, ArrowUp, ArrowDown, RefreshCw, Copy, Check, Download } from 'lucide-react';
 import { Video, Language } from '../types.ts';
 import { TRANSLATIONS } from '../constants.ts';
 
@@ -35,130 +35,135 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ videos, onAdd, onDelete, onMove
     }
   };
 
-  const copyToClipboard = () => {
-    const code = JSON.stringify(videos, null, 2);
+  const copyDataForDeploy = () => {
+    const code = `export const KPOP_VIDEOS: Video[] = ${JSON.stringify(videos, null, 2)};`;
     navigator.clipboard.writeText(code).then(() => {
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-      alert('현재 리스트가 복사되었습니다! constants.ts의 KPOP_VIDEOS에 붙여넣어 영구 배포하세요.');
+      setTimeout(() => setCopied(false), 3000);
     });
   };
 
   return (
-    <div className="fixed bottom-0 left-0 w-full z-[1000] bg-zinc-950 border-t-2 border-red-600 p-4 md:p-6 shadow-[0_-20px_60px_rgba(0,0,0,0.9)] animate-in slide-in-from-bottom duration-300">
+    <div className="fixed bottom-0 left-0 w-full z-[1000] bg-zinc-950 border-t-2 border-red-600 p-4 md:p-6 shadow-[0_-30px_100px_rgba(0,0,0,1)] animate-in slide-in-from-bottom duration-500">
       <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-center mb-6">
-          <div className="flex items-center gap-4">
-            <h2 className="text-xs font-black tracking-widest text-red-500 flex items-center gap-2">
-              <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+          <div className="flex flex-wrap items-center gap-4">
+            <h2 className="text-[10px] font-black tracking-widest text-red-500 flex items-center gap-2 bg-red-500/10 px-3 py-1.5 rounded-full border border-red-500/20">
+              <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-ping"></span>
               {t.title}
             </h2>
-            <div className="h-4 w-[1px] bg-white/10 hidden md:block"></div>
-            <button 
-              onClick={copyToClipboard}
-              className="text-[10px] font-black text-white hover:bg-white hover:text-black flex items-center gap-2 transition-all border border-white/20 px-3 py-1.5 rounded-full"
-            >
-              {copied ? <Check size={12} /> : <Copy size={12} />}
-              COPY FOR DEPLOY (constants.ts)
-            </button>
+            
+            <div className="flex items-center gap-2">
+              <button 
+                onClick={copyDataForDeploy}
+                className={`text-[10px] font-black flex items-center gap-2 px-4 py-2 rounded-full transition-all border ${
+                  copied 
+                  ? 'bg-green-600 border-green-500 text-white' 
+                  : 'bg-white text-black border-white hover:bg-neutral-200'
+                }`}
+              >
+                {copied ? <Check size={14} /> : <Download size={14} />}
+                {copied ? 'COPIED TO CLIPBOARD!' : '배포용 데이터 복사 (COPY DATA)'}
+              </button>
+              
+              {copied && (
+                <span className="text-[9px] font-bold text-green-500 animate-pulse">
+                  복사된 내용을 constants.ts의 KPOP_VIDEOS에 붙여넣으세요!
+                </span>
+              )}
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
             <button 
               onClick={onReset}
-              className="text-[10px] font-bold text-white/30 hover:text-red-500 flex items-center gap-1 transition-colors px-2 py-1"
+              className="text-[10px] font-bold text-white/30 hover:text-red-500 flex items-center gap-1.5 transition-colors px-3 py-2 hover:bg-white/5 rounded"
             >
-              <RefreshCw size={10} /> RESET
+              <RefreshCw size={12} /> RESET ALL
+            </button>
+            <button onClick={onClose} className="text-white/40 hover:text-white bg-white/5 p-2.5 rounded-full transition-all hover:bg-white/10">
+              <X size={24} />
             </button>
           </div>
-          <button onClick={onClose} className="text-white/40 hover:text-white bg-white/5 p-2 rounded-full transition-all">
-            <X size={20} />
-          </button>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Add New Section */}
-          <div className="bg-black p-5 rounded-md border border-white/5 shadow-inner">
-            <h3 className="text-[10px] font-bold tracking-widest text-white/50 mb-4 uppercase">{t.addNew}</h3>
-            <form onSubmit={handleSubmit} className="space-y-3">
+          {/* Form */}
+          <div className="bg-black/50 p-6 rounded-xl border border-white/5 space-y-4">
+            <h3 className="text-[10px] font-black tracking-widest text-white/40 uppercase">{t.addNew}</h3>
+            <form onSubmit={handleSubmit} className="space-y-4">
               <input 
-                type="text" 
-                placeholder={t.fieldTitle}
-                className="w-full bg-zinc-900 border border-white/10 p-3 text-xs rounded outline-none focus:border-red-600/50 text-white transition-all"
+                type="text" placeholder={t.fieldTitle} required
+                className="w-full bg-zinc-900 border border-white/10 p-4 text-[11px] rounded-lg outline-none focus:border-red-600/50 text-white transition-all font-bold uppercase tracking-tight"
                 value={newVideo.title || ''}
                 onChange={e => setNewVideo({...newVideo, title: e.target.value})}
-                required
               />
               <input 
-                type="text" 
-                placeholder={t.fieldArtist} 
-                className="w-full bg-zinc-900 border border-white/10 p-3 text-xs rounded outline-none focus:border-red-600/50 text-white transition-all"
+                type="text" placeholder={t.fieldArtist} required
+                className="w-full bg-zinc-900 border border-white/10 p-4 text-[11px] rounded-lg outline-none focus:border-red-600/50 text-white transition-all font-bold uppercase tracking-tight"
                 value={newVideo.artist || ''}
                 onChange={e => setNewVideo({...newVideo, artist: e.target.value})}
-                required
               />
               <input 
-                type="text" 
-                placeholder={t.fieldYoutube} 
-                className="w-full bg-zinc-900 border border-white/10 p-3 text-xs rounded outline-none focus:border-red-600/50 text-white transition-all"
+                type="text" placeholder={t.fieldYoutube} required
+                className="w-full bg-zinc-900 border border-white/10 p-4 text-[11px] rounded-lg outline-none focus:border-red-600/50 text-white transition-all font-bold"
                 value={newVideo.youtubeId || ''}
                 onChange={e => setNewVideo({...newVideo, youtubeId: e.target.value})}
-                required
               />
               <button 
                 type="submit"
-                className="w-full bg-red-600 hover:bg-red-700 text-white py-4 rounded text-[10px] font-black tracking-widest flex items-center justify-center gap-2 transition-all transform active:scale-95 shadow-lg shadow-red-600/20"
+                className="w-full bg-red-600 hover:bg-red-700 text-white py-4 rounded-lg text-[10px] font-black tracking-[0.2em] flex items-center justify-center gap-2 transition-all transform active:scale-95 shadow-xl shadow-red-600/20"
               >
-                <Plus size={14} /> {t.addBtn}
+                <Plus size={16} /> {t.addBtn}
               </button>
             </form>
           </div>
 
-          {/* List Manage Section */}
+          {/* List */}
           <div className="lg:col-span-2">
-            <h3 className="text-[10px] font-bold tracking-widest text-white/50 mb-4 uppercase">{t.manage} ({videos.length})</h3>
-            <div className="overflow-y-auto max-h-[320px] pr-2 custom-scrollbar space-y-2">
+            <h3 className="text-[10px] font-black tracking-widest text-white/40 mb-4 uppercase">{t.manage} ({videos.length})</h3>
+            <div className="overflow-y-auto max-h-[350px] pr-2 custom-scrollbar space-y-2">
               {videos.length === 0 ? (
-                <div className="text-center py-16 text-white/20 text-xs font-bold uppercase tracking-widest border border-dashed border-white/10 rounded">
-                  Playlist is empty
+                <div className="flex flex-col items-center justify-center py-20 bg-black/30 border border-dashed border-white/10 rounded-xl text-white/20 italic text-xs">
+                  리스트가 비어있습니다.
                 </div>
               ) : (
                 videos.map((video, idx) => (
-                  <div key={video.id} className="flex items-center gap-4 bg-zinc-900/50 p-3 rounded border border-white/5 group hover:border-white/20 transition-all">
-                    <div className="w-24 h-14 bg-black rounded overflow-hidden flex-shrink-0 relative">
-                      <img src={video.thumbnail} className="w-full h-full object-cover opacity-60" alt="" />
-                      <div className="absolute inset-0 flex items-center justify-center bg-black/40">
-                        <span className="text-[8px] font-black text-white/40">#{idx + 1}</span>
-                      </div>
+                  <div key={video.id} className="flex items-center gap-4 bg-zinc-900/40 p-4 rounded-xl border border-white/5 hover:border-white/20 transition-all group">
+                    <div className="w-24 h-14 bg-black rounded-lg overflow-hidden flex-shrink-0 border border-white/5">
+                      <img src={video.thumbnail} className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" alt="" />
                     </div>
                     <div className="flex-grow min-w-0">
-                      <p className="text-[11px] font-black text-white truncate uppercase">{video.title}</p>
-                      <p className="text-[9px] font-bold text-white/40 italic uppercase">{video.artist}</p>
+                      <p className="text-[11px] font-black text-white truncate uppercase tracking-tighter">{video.title}</p>
+                      <p className="text-[9px] font-bold text-white/30 italic uppercase">{video.artist}</p>
                     </div>
                     <div className="flex items-center gap-2">
                       <div className="flex flex-col gap-1">
                         <button 
-                          onClick={(e) => { e.stopPropagation(); onMove(video.id, 'up'); }}
+                          onClick={() => onMove(video.id, 'up')}
                           disabled={idx === 0}
-                          className="p-1.5 hover:bg-white hover:text-black rounded text-white/20 disabled:opacity-0 transition-all"
+                          className="p-1.5 hover:bg-white hover:text-black rounded-md text-white/20 disabled:opacity-0 transition-all"
                         >
-                          <ArrowUp size={12} />
+                          <ArrowUp size={14} />
                         </button>
                         <button 
-                          onClick={(e) => { e.stopPropagation(); onMove(video.id, 'down'); }}
+                          onClick={() => onMove(video.id, 'down')}
                           disabled={idx === videos.length - 1}
-                          className="p-1.5 hover:bg-white hover:text-black rounded text-white/20 disabled:opacity-0 transition-all"
+                          className="p-1.5 hover:bg-white hover:text-black rounded-md text-white/20 disabled:opacity-0 transition-all"
                         >
-                          <ArrowDown size={12} />
+                          <ArrowDown size={14} />
                         </button>
                       </div>
                       <button 
                         onClick={(e) => {
                           e.stopPropagation();
-                          if (window.confirm(`'${video.title}' 영상을 삭제하시겠습니까?`)) {
+                          if (window.confirm(`'${video.title}' 영상을 정말 삭제하시겠습니까?`)) {
                             onDelete(video.id);
                           }
                         }}
-                        className="p-3 hover:bg-red-600 hover:text-white rounded text-red-600/50 transition-all"
+                        className="p-4 hover:bg-red-600 hover:text-white rounded-xl text-red-600/40 transition-all ml-2"
                       >
-                        <Trash2 size={16} />
+                        <Trash2 size={20} />
                       </button>
                     </div>
                   </div>
@@ -169,16 +174,10 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ videos, onAdd, onDelete, onMove
         </div>
       </div>
       <style>{`
-        .custom-scrollbar::-webkit-scrollbar {
-          width: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-          background: rgba(255, 255, 255, 0.05);
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: rgba(220, 38, 38, 0.5);
-          border-radius: 10px;
-        }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.02); border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(220, 38, 38, 0.3); border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(220, 38, 38, 0.6); }
       `}</style>
     </div>
   );
