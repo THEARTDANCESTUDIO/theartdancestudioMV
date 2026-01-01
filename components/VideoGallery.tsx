@@ -1,41 +1,43 @@
 
 import React, { useState } from 'react';
 import { X, Play } from 'lucide-react';
-import { KPOP_VIDEOS } from '../constants.ts';
-import { Video } from '../types.ts';
+import { Video, Language } from '../types.ts';
+import { TRANSLATIONS } from '../constants.ts';
 
-const VideoGallery: React.FC = () => {
+interface VideoGalleryProps {
+  videos: Video[];
+  lang: Language;
+}
+
+const VideoGallery: React.FC<VideoGalleryProps> = ({ videos, lang }) => {
   const [activeVideo, setActiveVideo] = useState<Video | null>(null);
+  const t = TRANSLATIONS[lang].gallery;
 
   return (
     <section id="videos" className="bg-black min-h-screen py-16 px-6 md:px-12 lg:px-24">
       <div className="mb-14">
         <h1 className="text-4xl md:text-6xl font-[900] tracking-tighter uppercase mb-2 text-white">
-          K-POP MUSIC VIDEO
+          {t.title}
         </h1>
         <div className="w-16 h-1.5 bg-red-600 mb-6"></div>
       </div>
 
       <div className="grid grid-cols-1 gap-14">
-        {KPOP_VIDEOS.map((video) => (
+        {videos.map((video) => (
           <div 
             key={video.id} 
             className="group relative w-full aspect-[21/9] bg-neutral-900 overflow-hidden cursor-pointer rounded-sm"
             onClick={() => setActiveVideo(video)}
           >
-            {/* Background Thumbnail with dimming */}
             <img 
               src={video.thumbnail} 
               alt={video.title} 
               className="w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-[1.02] transition-all duration-1000 ease-out"
             />
             
-            {/* Dark vignette overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/20"></div>
             
-            {/* UI Overlay matching the requested screenshot */}
             <div className="absolute inset-0 p-8 md:p-14 flex flex-col justify-end items-start">
-              {/* Category label with red line */}
               <div className="flex items-center gap-4 mb-4">
                 <span className="text-[11px] font-black tracking-[0.3em] text-red-600 uppercase">
                   {video.category}
@@ -43,30 +45,26 @@ const VideoGallery: React.FC = () => {
                 <div className="h-[1px] w-20 bg-red-600/60"></div>
               </div>
               
-              {/* Main big Title */}
               <h3 className="text-5xl md:text-8xl font-[900] tracking-tighter text-white uppercase leading-none mb-6 group-hover:tracking-tight transition-all duration-700">
                 {video.title}
               </h3>
               
-              {/* Artist name and play button */}
               <div className="flex items-center gap-6">
                 <p className="text-xl md:text-3xl font-black text-white/50 italic uppercase tracking-tighter">
                   {video.artist}
                 </p>
                 
                 <div className="flex items-center gap-2 px-6 py-2.5 border border-white/30 rounded-full text-[11px] font-black tracking-widest text-white hover:bg-white hover:text-black transition-all duration-300">
-                  <Play size={12} fill="currentColor" /> PLAY VIDEO
+                  <Play size={12} fill="currentColor" /> {t.play}
                 </div>
               </div>
             </div>
 
-            {/* Subtle Film Grain / Texture Overlay */}
             <div className="absolute inset-0 pointer-events-none opacity-[0.04] mix-blend-soft-light bg-neutral-400"></div>
           </div>
         ))}
       </div>
 
-      {/* Immersive Video Modal */}
       {activeVideo && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center">
           <div 
@@ -75,7 +73,6 @@ const VideoGallery: React.FC = () => {
           ></div>
           
           <div className="relative z-10 w-full h-full flex flex-col animate-in fade-in zoom-in-95 duration-500">
-            {/* Top Bar */}
             <div className="flex justify-between items-center p-8 bg-black">
                <div className="flex flex-col">
                   <div className="flex items-center gap-3">
@@ -92,7 +89,6 @@ const VideoGallery: React.FC = () => {
               </button>
             </div>
             
-            {/* Player Container */}
             <div className="flex-grow w-full bg-black relative">
               <iframe
                 className="w-full h-full"

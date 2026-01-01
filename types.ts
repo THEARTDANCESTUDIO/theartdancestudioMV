@@ -1,4 +1,6 @@
 
+export type Language = 'EN' | 'KO' | 'JA' | 'ZH';
+
 export interface Video {
   id: string;
   title: string;
@@ -9,6 +11,6 @@ export interface Video {
 }
 
 export interface NavLink {
-  label: string;
+  labelKey: keyof typeof import('./constants.ts').TRANSLATIONS['EN']['nav'];
   href: string;
 }
