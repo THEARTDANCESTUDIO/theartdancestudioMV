@@ -1,4 +1,3 @@
-
 import React, { useRef } from 'react';
 import { Instagram, Youtube, Twitter } from 'lucide-react';
 import { Language } from '../types';
@@ -46,11 +45,15 @@ const Footer: React.FC<FooterProps> = ({ onTriggerAdmin, lang }) => {
             <h3 className="text-3xl font-black tracking-tighter mb-4 group-hover:text-white transition-colors">{t.anyQuestions}</h3>
             <p className="text-white/50 text-sm group-hover:text-white/70 transition-colors">{t.faqDesc}</p>
           </a>
-          <div>
-            <span className="text-[10px] font-bold tracking-widest text-white/40 block mb-2 uppercase">{t.contact}</span>
-            <h3 className="text-3xl font-black tracking-tighter mb-4">{t.getInTouch}</h3>
-            <p className="text-white/50 text-sm">{t.contactDesc}</p>
-          </div>
+          
+          <a 
+            href="https://vocal-fairy-ef3f8a.netlify.app" 
+            className="group block"
+          >
+            <span className="text-[10px] font-bold tracking-widest text-white/40 block mb-2 group-hover:text-red-500 transition-colors uppercase">{t.contact}</span>
+            <h3 className="text-3xl font-black tracking-tighter mb-4 group-hover:text-white transition-colors">{t.getInTouch}</h3>
+            <p className="text-white/50 text-sm group-hover:text-white/70 transition-colors">{t.contactDesc}</p>
+          </a>
         </div>
 
         <div className="flex flex-col items-center text-center">
