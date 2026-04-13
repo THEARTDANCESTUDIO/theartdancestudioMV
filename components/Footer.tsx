@@ -57,9 +57,12 @@ const Footer: React.FC<FooterProps> = ({ onTriggerAdmin, lang }) => {
         </div>
 
         <div className="flex flex-col items-center text-center">
-          <div className="text-6xl md:text-8xl font-black tracking-tighter mb-8">
+          <a 
+            href="https://theartdancestudio.com/" 
+            className="text-6xl md:text-8xl font-black tracking-tighter mb-8 hover:text-red-500 transition-colors"
+          >
             THEART<span className="text-red-600">.</span>
-          </div>
+          </a>
           
           <div className="space-y-2 mb-12">
             <p className="text-xs font-bold tracking-widest text-white/60 uppercase">{t.office}</p>

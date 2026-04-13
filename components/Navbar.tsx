@@ -20,7 +20,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentLang, onLangChange }) => {
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-black/80 backdrop-blur-sm border-b border-white/10 h-16 flex items-center px-6 md:px-12 justify-between">
       <div className="flex items-center gap-8">
-        <a href="https://theartdancestudio1120.netlify.app" className="text-xl font-black tracking-tighter flex items-center">
+        <a href="https://theartdancestudio.com/" className="text-xl font-black tracking-tighter flex items-center">
           THEART<span className="text-red-600 block w-1.5 h-1.5 ml-0.5 mt-1 rounded-full"></span>
         </a>
       </div>
