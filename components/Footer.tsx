@@ -38,7 +38,7 @@ const Footer: React.FC<FooterProps> = ({ onTriggerAdmin, lang }) => {
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-24">
           <a 
-            href="https://stupendous-shortbread-e6c2e2.netlify.app" 
+            href="https://theart-faq.netlify.app" 
             className="group block"
           >
             <span className="text-[10px] font-bold tracking-widest text-white/40 block mb-2 group-hover:text-red-500 transition-colors uppercase">{t.faq}</span>
@@ -47,7 +47,7 @@ const Footer: React.FC<FooterProps> = ({ onTriggerAdmin, lang }) => {
           </a>
           
           <a 
-            href="https://vocal-fairy-ef3f8a.netlify.app" 
+            href="https://theart-contact.netlify.app" 
             className="group block"
           >
             <span className="text-[10px] font-bold tracking-widest text-white/40 block mb-2 group-hover:text-red-500 transition-colors uppercase">{t.contact}</span>
