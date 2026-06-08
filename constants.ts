@@ -150,6 +150,22 @@ export const NAV_LINKS: { labelKey: keyof typeof TRANSLATIONS.EN.nav; href: stri
 
 export const KPOP_VIDEOS: Video[] = [
   {
+    id: "v-freak-alarm",
+    title: "FREAK ALARM",
+    artist: "ALPHA DRIVE ONE",
+    youtubeId: "GMKQ0_tSSs4",
+    thumbnail: "https://img.youtube.com/vi/GMKQ0_tSSs4/maxresdefault.jpg",
+    category: "THEART M/V"
+  },
+  {
+    id: "v-xxl",
+    title: "XXL",
+    artist: "YOUNG POSSE",
+    youtubeId: "w3oIEZKimyE",
+    thumbnail: "https://img.youtube.com/vi/w3oIEZKimyE/maxresdefault.jpg",
+    category: "THEART M/V"
+  },
+  {
     id: "v-wicked",
     title: "WICKED",
     artist: "ALLDAY PROJECT",

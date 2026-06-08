@@ -10,7 +10,7 @@ const App: React.FC = () => {
   // 로컬 스토리지를 확인하여 이전에 작업하던 데이터가 있으면 불러오고, 없으면 코드의 기본값을 사용합니다.
   const [videos, setVideos] = useState<Video[]>(() => {
     try {
-      const saved = localStorage.getItem('theart_videos_v2');
+      const saved = localStorage.getItem('theart_videos_v4');
       if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) return parsed;
@@ -27,7 +27,7 @@ const App: React.FC = () => {
 
   // 작업 중인 영상 리스트를 브라우저에 임시 저장합니다 (새로고침 시 유지용)
   useEffect(() => {
-    localStorage.setItem('theart_videos_v2', JSON.stringify(videos));
+    localStorage.setItem('theart_videos_v4', JSON.stringify(videos));
   }, [videos]);
 
   const handleAddVideo = useCallback((newVideo: Video) => {
@@ -62,7 +62,7 @@ const App: React.FC = () => {
   const handleResetVideos = useCallback(() => {
     if (window.confirm('모든 로컬 수정을 취소하고 constants.ts에 저장된 파일 원본 상태로 되돌리시겠습니까?')) {
       setVideos([...KPOP_VIDEOS]);
-      localStorage.removeItem('theart_videos_v2');
+      localStorage.removeItem('theart_videos_v4');
     }
   }, []);
 
